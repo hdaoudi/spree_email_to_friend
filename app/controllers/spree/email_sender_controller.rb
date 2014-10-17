@@ -3,6 +3,8 @@ class Spree::EmailSenderController < Spree::StoreController
   helper Spree::BaseHelper
 
   before_filter :find_object
+  before_filter :find_wishlist, :only => [:send_mail]
+
 
   def send_mail
     if request.get?
@@ -59,5 +61,11 @@ class Spree::EmailSenderController < Spree::StoreController
       # Display 404 page if object is not found.
       raise ActiveRecord::RecordNotFound if @object.nil?
     end
+    
+
+  # Isolate this method so it can be overwritten
+  def find_wishlist
+    @wishlist = Spree::Wishlist.find_by_access_hash(params[:id])
+  end
 
 end
