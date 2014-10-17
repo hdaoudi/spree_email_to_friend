@@ -3,7 +3,6 @@ class Spree::EmailSenderController < Spree::StoreController
   helper Spree::BaseHelper
 
   before_filter :find_object
-  before_filter :find_wishlist
 
 
   def send_mail
@@ -63,9 +62,6 @@ class Spree::EmailSenderController < Spree::StoreController
     end
     
 
-  # Isolate this method so it can be overwritten
-  def find_wishlist
-    @wishlist = Spree::Wishlist.find_by_access_hash(params[:id])
-  end
+
 
 end
