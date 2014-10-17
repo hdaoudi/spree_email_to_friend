@@ -3,7 +3,7 @@ class Spree::EmailSenderController < Spree::StoreController
   helper Spree::BaseHelper
 
   before_filter :find_object
-  before_filter :find_wishlist, :only => [:send_mail]
+  before_filter :find_wishlist
 
 
   def send_mail
